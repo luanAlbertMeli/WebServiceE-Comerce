@@ -1,3 +1,3 @@
 # WebServiceE-Comerce - Projeto E-Commerce
 
-Estudando Spring, JPA e H2
+Estudando Spring, JPA e MYSQL
