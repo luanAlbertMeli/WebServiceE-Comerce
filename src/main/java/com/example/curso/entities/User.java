@@ -6,11 +6,12 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,6 +21,7 @@ import java.util.Objects;
 public class User implements Serializable {
 
     private  static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,6 +29,7 @@ public class User implements Serializable {
     private String email;
     private String phone;
     private String password;
+    private LocalDate dateCreated;
 
     @JsonIgnore
     @OneToMany(mappedBy = "client") // to pegando o client mapeado da minha classe order

@@ -8,7 +8,9 @@ import com.example.curso.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -17,9 +19,6 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
-
-    @Autowired
-    private UserService userService;
 
     @GetMapping
     public ResponseEntity<List<Order>> findAll(){
@@ -32,4 +31,14 @@ public class OrderController {
         Order order = orderService.findById(id);
         return ResponseEntity.ok().body(order);
     }
+    @PostMapping("add")
+    public ResponseEntity<Order> save(@RequestBody Order order){
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(order.getId())
+                .toUri();
+        orderService.add(order);
+        return ResponseEntity.created(uri).body(order);
+    }
+
 }

@@ -28,4 +28,8 @@ public class OrderService {
        Optional<Order> order = orderRepository.findById(id);
        return order.get();
     }
+
+    public Order add(Order order){
+        return orderRepository.save(order);
+    }
 }
